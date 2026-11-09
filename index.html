@@ -1267,6 +1267,26 @@
       const langData = LANGUAGES[currentLang];
       const t = text.toLowerCase();
 
+      // Update chips based on new state
+      function updateContextChips() {
+          chipsContainer.innerHTML = '';
+          let options = [];
+          if (currentState === 'SELECT_SERVICE') {
+              options = SERVICE_MAP[currentLang];
+          } else if (currentState === 'SELECT_TIME') {
+              options = langData.slot_list;
+          } else {
+              options = langData.chips;
+          }
+          options.forEach(text => {
+              const chip = document.createElement('div');
+              chip.className = 'chip';
+              chip.textContent = text;
+              chip.onclick = () => handleUserInput(text);
+              chipsContainer.appendChild(chip);
+          });
+      }
+
       if (currentState === 'START' || currentState === 'DONE') {
         await botReply(langData.greet);
         await botReply(langData.services);
@@ -1317,6 +1337,8 @@
         await botReply(langData.remind);
         currentState = 'DONE';
       }
+      
+      updateContextChips();
     }
 
     sendBtn.onclick = () => handleUserInput(inp.value);
