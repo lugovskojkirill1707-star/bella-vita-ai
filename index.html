@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AI Salon Secretary — 24/7 WhatsApp Booking Assistant</title>
+  <meta name="description" content="Automate your beauty salon bookings with an AI Secretary. Premium red & black theme, multilingual, 24/7 instant replies on WhatsApp, and automated reminders.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0A0A0C;
+      --bg-alt: #131318;
+      --card: #181820;
+      --card-border: #2A2A38;
+      --primary: #E10600;
+      --primary-hover: #FF1A14;
+      --primary-glow: rgba(225, 6, 0, 0.35);
+      --text: #F3F3F6;
+      --text-muted: #9E9EAE;
+      --whatsapp: #25D366;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      --shadow-lg: 0 30px 60px rgba(225, 6, 0, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* --- Floating Decorative Elements --- */
+    .floating-orbs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.25;
+      animation: floatOrb 18s infinite alternate ease-in-out;
+    }
+
+    .orb-1 {
+      width: 450px;
+      height: 450px;
+      background: #E10600;
+      top: -100px;
+      left: -100px;
+      animation-duration: 20s;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: #600000;
+      bottom: -150px;
+      right: -100px;
+      animation-duration: 25s;
+      animation-delay: -5s;
+    }
+
+    .orb-3 {
+      width: 300px;
+      height: 300px;
+      background: #FF3333;
+      top: 40%;
+      left: 60%;
+      animation-duration: 15s;
+      animation-delay: -2s;
+      opacity: 0.15;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(50px, 80px) scale(1.1); }
+      100% { transform: translate(-40px, 60px) scale(0.95); }
+    }
+
+    /* --- Container & Layout --- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* --- Header --- */
+    header {
+      padding: 32px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+      box-shadow: 0 10px 25px var(--primary-glow);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(225, 6, 0, 0.5);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--card);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      padding: 80px 0 140px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 80px;
+      align-items: center;
+      text-align: center;
+      justify-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 40px 0 100px;
+      }
+    }
+
+    .hero-content {
+      animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: rgba(225, 6, 0, 0.1);
+      border: 1px solid rgba(225, 6, 0, 0.3);
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #FF4D4A;
+      margin-bottom: 28px;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 5.5vw, 68px);
+      margin-bottom: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+    }
+
+    .hero-content h1 span {
+      color: var(--primary);
+    }
+
+    .hero-content p {
+      font-size: 20px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-content p, .hero-content .badge {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-buttons {
+        justify-content: center;
+      }
+    }
+
+    /* --- Section Titles Centered --- */
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 80px;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 4.5vw, 48px);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 18px;
+    }
+
+    /* --- Benefits Section --- */
+    .benefits {
+      padding: 120px 0;
+      background: linear-gradient(to bottom, transparent, var(--bg-alt), transparent);
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 32px;
+    }
+
+    .benefit-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      padding: 56px 44px;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(225, 6, 0, 0.4);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .benefit-card:hover::before {
+      opacity: 1;
+    }
+
+    .benefit-card .icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(225, 6, 0, 0.1);
+      border: 1px solid rgba(225, 6, 0, 0.2);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+      font-size: 32px;
+    }
+
+    .benefit-card h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .benefit-card p {
+      color: var(--text-muted);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    /* --- Demo Phone Mockup --- */
+    .demo-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    .phone {
+      width: 100%;
+      background: var(--card);
+      border-radius: 48px;
+      border: 12px solid #1C1C24;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(225, 6, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      height: 780px;
+      position: relative;
+    }
+
+    .phone-speaker {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 28px;
+      background: #1C1C24;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      z-index: 10;
+    }
+
+    .phone-head {
+      background: #121217;
+      border-bottom: 1px solid var(--card-border);
+      color: white;
+      padding: 44px 20px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .phone-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #E10600, #800000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(225, 6, 0, 0.4);
+    }
+
+    .phone-avatar svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .phone-head .status {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .phone-head .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px #22c55e;
+    }
+
+    .chat-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 20px;
+      background: #0D0D11;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .msg {
+      max-width: 86%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 15px;
+      position: relative;
+      animation: msgPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      line-height: 1.5;
+    }
+
+    @keyframes msgPop {
+      from { opacity: 0; transform: translateY(15px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .msg.bot {
+      background: #1E1E28;
+      color: var(--text);
+      align-self: flex-start;
+      border-top-left-radius: 4px;
+      border: 1px solid var(--card-border);
+    }
+
+    .msg.me {
+      background: #E10600;
+      color: white;
+      align-self: flex-end;
+      border-top-right-radius: 4px;
+      box-shadow: 0 4px 15px rgba(225, 6, 0, 0.3);
+    }
+
+    .msg .time {
+      display: block;
+      text-align: right;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 6px;
+    }
+
+    .msg.bot .time {
+      color: var(--text-muted);
+    }
+
+    .typing {
+      align-self: flex-start;
+      background: #1E1E28;
+      border: 1px solid var(--card-border);
+      padding: 12px 18px;
+      border-radius: 16px;
+      border-top-left-radius: 4px;
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .typing span {
+      width: 7px;
+      height: 7px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      animation: typing 1.2s infinite ease-in-out;
+    }
+
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typing {
+      0%, 80%, 100% { opacity: 0.3; transform: scale(1); }
+      40% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .chips-container {
+      padding: 14px 16px;
+      background: #131318;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      max-height: 140px;
+      overflow-y: auto;
+    }
+
+    .chip {
+      background: #1E1E28;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #FF6663;
+      cursor: pointer;
+      border: 1px solid #323242;
+      transition: all 0.2s;
+      user-select: none;
+      font-weight: 500;
+    }
+
+    .chip:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .input-bar {
+      padding: 16px 20px 28px;
+      background: #131318;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .input-bar input {
+      flex: 1;
+      padding: 14px 20px;
+      border-radius: 28px;
+      border: 1px solid var(--card-border);
+      background: #0D0D11;
+      color: var(--text);
+      outline: none;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .input-bar input:focus {
+      border-color: var(--primary);
+    }
+
+    .send-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+
+    .send-btn:hover {
+      background: var(--primary-hover);
+      transform: scale(1.05);
+    }
+
+    /* --- Pricing Section --- */
+    .pricing {
+      padding: 120px 0;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .price-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      padding: 60px 48px;
+      border-radius: 36px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .price-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .price-card.featured {
+      border: 2px solid var(--primary);
+      background: linear-gradient(180deg, var(--card), #1B1215);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .price-card.featured::after {
+      content: 'Most Popular';
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: white;
+      padding: 6px 20px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      box-shadow: 0 4px 15px rgba(225, 6, 0, 0.5);
+    }
+
+    .price-card h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .price-card .price {
+      font-size: 64px;
+      font-family: 'Playfair Display', serif;
+      margin: 24px 0 8px;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .price-card .price span {
+      font-size: 20px;
+      color: var(--text-muted);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .price-card ul {
+      list-style: none;
+      margin: 40px 0;
+      text-align: left;
+    }
+
+    .price-card ul li {
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    .price-card ul li::before {
+      content: '✓';
+      color: white;
+      font-weight: bold;
+      background: var(--primary);
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 12px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+
+    /* --- Contact Section --- */
+    .contact-section {
+      padding: 100px 0;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .contact-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 36px;
+      padding: 60px 40px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      margin-bottom: 16px;
+    }
+
+    .contact-card p {
+      color: var(--text-muted);
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .contact-methods {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #121217;
+      border: 1px solid var(--card-border);
+      padding: 18px 28px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(225, 6, 0, 0.2);
+    }
+
+    .contact-item svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--primary);
+    }
+
+    /* --- Footer --- */
+    footer {
+      padding: 80px 0 50px;
+      text-align: center;
+      background-color: var(--bg);
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Decorative Background Orbs -->
+  <div class="floating-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <a href="#" class="logo">
+        <svg width="34" height="34" viewBox="0 0 100 100" fill="none">
+          <path d="M50 8C26 8 12 24 12 44c0 14 8 26 20 31l-4 13 16-9c2 .2 4 .3 6 .3 24 0 38-16 38-36S74 8 50 8z" fill="#E10600" opacity=".9"/>
+          <path d="M50 30l5.2 12.6L68 44l-10 8.6L60.8 66 50 58.8 39.2 66 42 52.6 32 44l12.8-1.4z" fill="white"/>
+        </svg>
+        Bella Vita <span>AI</span>
+      </a>
+      <a href="#demo" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px;">Try Live Demo</a>
+    </header>
+  </div>
+
+  <section class="hero">
+    <div class="container" style="display: contents;">
+      <div class="hero-content">
+        <div class="badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Next-Gen Salon Automation
+        </div>
+        <h1>Your salon loses bookings <span>while you work.</span></h1>
+        <p>Your AI Secretary answers clients instantly 24/7 on WhatsApp, books appointments effortlessly, and cuts no-shows by up to 70%.</p>
+        <div class="hero-buttons">
+          <a href="#demo" class="btn btn-primary">Try the Demo Below</a>
+          <a href="#pricing" class="btn btn-secondary">View Pricing</a>
+        </div>
+      </div>
+      
+      <div class="demo-wrapper" id="demo">
+        <div class="phone">
+          <div class="phone-speaker"></div>
+          <div class="phone-head">
+            <div class="phone-avatar">
+              <svg viewBox="0 0 100 100"><path d="M50 8C26 8 12 24 12 44c0 14 8 26 20 31l-4 13 16-9c2 .2 4 .3 6 .3 24 0 38-16 38-36S74 8 50 8z" fill="#E10600" opacity=".9"/><path d="M50 30l5.2 12.6L68 44l-10 8.6L60.8 66 50 58.8 39.2 66 42 52.6 32 44l12.8-1.4z" fill="#FFFFFF"/></svg>
+            </div>
+            <div>
+              <div style="font-weight: 600; font-size: 16px; letter-spacing: 0.3px;">Bella Vita Secretary</div>
+              <div class="status"><span class="dot"></span> online · replies instantly</div>
+            </div>
+          </div>
+          
+          <div class="chat-container" id="chat"></div>
+          
+          <div class="chips-container" id="chips">
+            <!-- dynamic chips -->
+          </div>
+          
+          <div class="input-bar">
+            <input type="text" id="inp" placeholder="Type a message..." autocomplete="off">
+            <button class="send-btn" id="send" aria-label="Send">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Salons Love Our AI</h2>
+        <p>The smartest way to manage your schedule, engage clients, and protect your revenue without lifting a finger.</p>
+      </div>
+      
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <div class="icon">🌙</div>
+          <h3>24/7 Instant Replies</h3>
+          <p>Never keep a client waiting. The AI answers inquiries immediately, even at 3 AM while your salon is closed.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="icon">🌍</div>
+          <h3>Multilingual Support</h3>
+          <p>Speaks your client's language fluently across English, Russian, Ukrainian, Italian, Spanish, German, and French.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="icon">🔔</div>
+          <h3>No-Show Protection</h3>
+          <p>Sends smart automated reminders 24 hours before the visit, reducing no-shows by up to 70% and saving revenue.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <h2>Simple, Transparent Pricing</h2>
+        <p>Choose the plan that fits your salon's growth.</p>
+      </div>
+      
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Pilot Plan</h3>
+          <div class="price">59€<span>/mo</span></div>
+          <p style="margin-bottom: 24px; color: var(--text-muted); font-weight: 600;">0€ Setup Fee</p>
+          <ul>
+            <li>24/7 AI Secretary on WhatsApp</li>
+            <li>Basic Booking & Pricing Flow</li>
+            <li>Multilingual Support (7 languages)</li>
+            <li>Instant Setup in 24 Hours</li>
+          </ul>
+          <a href="mailto:lugovskojkirill1707@gmail.com?subject=Pilot%20Plan%20Inquiry" class="btn btn-secondary" style="width: 100%;">Get Started</a>
+        </div>
+        
+        <div class="price-card featured">
+          <h3>Standard Plan</h3>
+          <div class="price">99€<span>/mo</span></div>
+          <p style="margin-bottom: 24px; color: var(--text-muted); font-weight: 600;">150€ Setup Fee</p>
+          <ul>
+            <li>Everything in Pilot Plan</li>
+            <li>Custom AI Salon Training & Menu</li>
+            <li>Automated 24h Reminders</li>
+            <li>Advanced Calendar Sync</li>
+            <li>Priority VIP Support</li>
+          </ul>
+          <a href="mailto:lugovskojkirill1707@gmail.com?subject=Standard%20Plan%20Inquiry" class="btn btn-primary" style="width: 100%;">Get Standard Plan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-card">
+        <h2>Get in Touch</h2>
+        <p>Have questions or ready to install your AI secretary? Reach out to us directly.</p>
+        <div class="contact-methods">
+          <a href="mailto:lugovskojkirill1707@gmail.com" class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            lugovskojkirill1707@gmail.com
+          </a>
+          <a href="https://www.instagram.com/ai.secretary.fr/" target="_blank" rel="noopener noreferrer" class="contact-item">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @ai.secretary.fr
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Made with ❤️ for salons worldwide. &copy; 2026 Bella Vita AI Secretary.</p>
+    </div>
+  </footer>
+
+  <script>
+    // --- Multilingual Bot Logic ---
+    const chat = document.getElementById('chat');
+    const inp = document.getElementById('inp');
+    const sendBtn = document.getElementById('send');
+    const chipsContainer = document.getElementById('chips');
+
+    const LANGUAGES = {
+      en: {
+        greet: "Hello! 💫 This is Bella Vita salon. I'm your virtual secretary. How can I help you today?",
+        services: "We offer the following services:\n1️⃣ Manicure — 35 € (60 min)\n2️⃣ Pedicure — 45 € (70 min)\n3️⃣ Haircut — 30 € (45 min)\n4️⃣ Coloring — from 80 € (~2 h)\n\nWhich one would you like to book?",
+        slots: "Great choice! When would you like to come? Here are our available slots:",
+        slot_list: ["Today at 15:00", "Today at 17:30", "Tomorrow at 10:00", "Tomorrow at 12:30"],
+        confirm: "Perfect! ✅ I've booked your {service} for {time}. See you soon!",
+        remind: "I will send you a reminder 24 hours before your appointment. Anything else?",
+        fallback: "I'm sorry, I didn't quite catch that. Would you like to book a Manicure, Pedicure, Haircut, or Coloring?",
+        chips: ["I want a manicure tomorrow 💅", "Price list please", "Do you have slots for today?"]
+      },
+      ru: {
+        greet: "Здравствуйте! 💫 Это салон Bella Vita. Я ваш виртуальный секретарь. Чем могу помочь?",
+        services: "Наши услуги:\n1️⃣ Маникюр — 35 € (60 мин)\n2️⃣ Педикюр — 45 € (70 мин)\n3️⃣ Стрижка — 30 € (45 мин)\n4️⃣ Окрашивание — от 80 € (~2 ч)\n\nЧто вас интересует?",
+        slots: "Отлично! На какое время вас записать? Свободные окна:",
+        slot_list: ["Сегодня в 15:00", "Сегодня в 17:30", "Завтра в 10:00", "Завтра в 12:30"],
+        confirm: "Готово! ✅ Записала вас на {service} ({time}). Ждем вас!",
+        remind: "Я напомню вам о визите за 24 часа. Что-нибудь еще?",
+        fallback: "Извините, не совсем поняла. Вы хотите записаться на маникюр, педикюр, стрижку или окрашивание?",
+        chips: ["Хочу маникюр завтра 💅", "Цены на услуги", "Есть окна на сегодня?"]
+      },
+      ua: {
+        greet: "Вітаємо! 💫 Це салон Bella Vita. Я ваш віртуальний секретар. Чим можу допомогти?",
+        services: "Наші послуги:\n1️⃣ Манікюр — 35 € (60 хв)\n2️⃣ Педикюр — 45 € (70 хв)\n3️⃣ Стрижка — 30 € (45 хв)\n4️⃣ Фарбування — від 80 € (~2 год)\n\nЩо вас цікавить?",
+        slots: "Чудово! На який час вас записати? Вільні вікна:",
+        slot_list: ["Сьогодні о 15:00", "Сьогодні о 17:30", "Завтра о 10:00", "Завтра о 12:30"],
+        confirm: "Готово! ✅ Записала вас на {service} ({time}). Чекаємо на вас!",
+        remind: "Я нагадаю вам про візит за 24 години. Щось ще?",
+        fallback: "Вибачте, не зовсім зрозуміла. Ви хочете записатися на манікюр, педикюр, стрижку чи фарбування?",
+        chips: ["Хочу манікюр завтра 💅", "Ціни на послуги", "Є вікна на сьогодні?"]
+      },
+      it: {
+        greet: "Benvenuti! 💫 Questo è il salone Bella Vita. Sono la vostra segretaria virtuale. Come posso aiutarvi?",
+        services: "I nostri servizi:\n1️⃣ Manicure — 35 € (60 min)\n2️⃣ Pedicure — 45 € (70 min)\n3️⃣ Taglio — 30 € (45 min)\n4️⃣ Colore — da 80 € (~2 h)\n\nQuale desidera prenotare?",
+        slots: "Perfetto! Per che ora desidera l'appuntamento? Orari disponibili:",
+        slot_list: ["Oggi alle 15:00", "Oggi alle 17:30", "Domani alle 10:00", "Domani alle 12:30"],
+        confirm: "Fatto! ✅ Ho prenotato il tuo {service} per {time}. A presto!",
+        remind: "Ti invierò un promemoria 24 ore prima dell'appuntamento. Altro?",
+        fallback: "Scusi, non ho capito bene. Desidera prenotare Manicure, Pedicure, Taglio o Colore?",
+        chips: ["Vorrei una manicure domani 💅", "Listino prezzi", "Ci sono posti per oggi?"]
+      },
+      es: {
+        greet: "¡Hola! 💫 Este es el salón Bella Vita. Soy tu secretaria virtual. ¿En qué puedo ayudarte hoy?",
+        services: "Ofrecemos los siguientes servicios:\n1️⃣ Manicura — 35 € (60 min)\n2️⃣ Pedicura — 45 € (70 min)\n3️⃣ Corte de pelo — 30 € (45 min)\n4️⃣ Coloración — desde 80 € (~2 h)\n\n¿Cuál te gustaría reservar?",
+        slots: "¡Genial! ¿A qué hora te gustaría venir? Horarios disponibles:",
+        slot_list: ["Hoy a las 15:00", "Hoy a las 17:30", "Mañana a las 10:00", "Mañana a las 12:30"],
+        confirm: "¡Listo! ✅ He reservado tu {service} para {time}. ¡Nos vemos pronto!",
+        remind: "Te enviaré un recordatorio 24 horas antes de tu cita. ¿Algo más?",
+        fallback: "Lo siento, no te entendí bien. ¿Te gustaría reservar Manicura, Pedicura, Corte o Color?",
+        chips: ["Quiero manicura mañana 💅", "Lista de precios", "¿Hay huecos para hoy?"]
+      },
+      de: {
+        greet: "Hallo! 💫 Dies ist der Salon Bella Vita. Ich bin Ihre virtuelle Sekretärin. Wie kann ich Ihnen heute helfen?",
+        services: "Wir bieten folgende Dienstleistungen an:\n1️⃣ Maniküre — 35 € (60 Min.)\n2️⃣ Pediküre — 45 € (70 Min.)\n3️⃣ Haarschnitt — 30 € (45 Min.)\n4️⃣ Färben — ab 80 € (~2 Std.)\n\nWas möchten Sie buchen?",
+        slots: "Super! Wann möchten Sie kommen? Verfügbare Termine:",
+        slot_list: ["Heute um 15:00", "Heute um 17:30", "Morgen um 10:00", "Morgen um 12:30"],
+        confirm: "Fertig! ✅ Ich habe {service} für {time} gebucht. Bis bald!",
+        remind: "Ich werde Sie 24 Stunden vor Ihrem Termin erinnern. Sonst noch etwas?",
+        fallback: "Entschuldigung, das habe ich nicht ganz verstanden. Möchten Sie Maniküre, Pediküre, Haarschnitt oder Färben buchen?",
+        chips: ["Maniküre für morgen 💅", "Preisliste bitte", "Termine für heute?"]
+      },
+      fr: {
+        greet: "Bonjour ! 💫 C'est le salon Bella Vita. Je suis votre secrétaire virtuelle. Comment puis-je vous aider ?",
+        services: "Nous proposons les services suivants :\n1️⃣ Manucure — 35 € (60 min)\n2️⃣ Pédicure — 45 € (70 min)\n3️⃣ Coupe — 30 € (45 min)\n4️⃣ Coloration — à partir de 80 € (~2 h)\n\nLequel souhaitez-vous réserver ?",
+        slots: "Super ! À quelle heure souhaitez-vous venir ? Créneaux disponibles :",
+        slot_list: ["Aujourd'hui à 15:00", "Aujourd'hui à 17:30", "Demain à 10:00", "Demain à 12:30"],
+        confirm: "C'est fait ! ✅ J'ai réservé votre {service} pour {time}. À bientôt !",
+        remind: "Je vous enverrai un rappel 24 heures avant votre rendez-vous. Autre chose ?",
+        fallback: "Désolé, je n'ai pas bien compris. Souhaitez-vous réserver une Manucure, Pédicure, Coupe ou Coloration ?",
+        chips: ["Manucure demain 💅", "Tarifs", "Dispo pour aujourd'hui ?"]
+      }
+    };
+
+    let currentLang = 'en';
+    let currentState = 'START';
+    let selectedService = '';
+
+    function detectLanguage(text) {
+      const t = text.toLowerCase();
+      if (/[іїєґ]/.test(t)) return 'ua';
+      if (/[а-яё]/.test(t)) return 'ru';
+      if (/\b(ciao|vorrei|prenotare|taglio|prezzo|costa|oggi|domani|buongiorno|grazie)\b/.test(t)) return 'it';
+      if (/\b(hola|quiero|reserva|precio|cuanto|hoy|manana|mañana|gracias|buenos)\b/.test(t)) return 'es';
+      if (/\b(hallo|ich|mochte|möchte|buch|termin|preis|heute|morgen|danke)\b/.test(t)) return 'de';
+      if (/\b(bonjour|salut|veux|reserver|réserver|prix|aujourd|demain|merci)\b/.test(t)) return 'fr';
+      return 'en';
+    }
+
+    function addMessage(text, side) {
+      const msg = document.createElement('div');
+      msg.className = `msg ${side}`;
+      const time = new Date().getHours() + ":" + new Date().getMinutes().toString().padStart(2, '0');
+      msg.innerHTML = text.replace(/\n/g, '<br>') + `<span class="time">${time}</span>`;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function showTyping() {
+      const typing = document.createElement('div');
+      typing.className = 'typing';
+      typing.innerHTML = '<span></span><span></span><span></span>';
+      typing.id = 'typing-indicator';
+      chat.appendChild(typing);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function hideTyping() {
+      const el = document.getElementById('typing-indicator');
+      if (el) el.remove();
+    }
+
+    function setChips(lang) {
+      chipsContainer.innerHTML = '';
+      LANGUAGES[lang].chips.forEach(text => {
+        const chip = document.createElement('div');
+        chip.className = 'chip';
+        chip.textContent = text;
+        chip.onclick = () => {
+          handleUserInput(text);
+        };
+        chipsContainer.appendChild(chip);
+      });
+    }
+
+    async function botReply(text) {
+      showTyping();
+      await new Promise(r => setTimeout(r, 800 + Math.random() * 800));
+      hideTyping();
+      addMessage(text, 'bot');
+    }
+
+    const SERVICE_MAP = {
+      en: ['Manicure', 'Pedicure', 'Haircut', 'Coloring'],
+      ru: ['Маникюр', 'Педикюр', 'Стрижку', 'Окрашивание'],
+      ua: ['Манікюр', 'Педикюр', 'Стрижку', 'Фарбування'],
+      it: ['Manicure', 'Pedicure', 'Taglio', 'Colore'],
+      es: ['Manicura', 'Pedicura', 'Corte', 'Coloración'],
+      de: ['Maniküre', 'Pediküre', 'Haarschnitt', 'Färben'],
+      fr: ['Manucure', 'Pédicure', 'Coupe', 'Coloration']
+    };
+
+    async function handleUserInput(text) {
+      if (!text.trim()) return;
+      addMessage(text, 'me');
+      inp.value = '';
+
+      const detected = detectLanguage(text);
+      if (detected !== currentLang) {
+        currentLang = detected;
+        setChips(currentLang);
+      }
+
+      const langData = LANGUAGES[currentLang];
+      const t = text.toLowerCase();
+
+      if (currentState === 'START' || currentState === 'DONE') {
+        await botReply(langData.greet);
+        await botReply(langData.services);
+        currentState = 'SELECT_SERVICE';
+      } else if (currentState === 'SELECT_SERVICE') {
+        let foundIndex = -1;
+        const currentServices = SERVICE_MAP[currentLang];
+        
+        const numMatch = t.match(/\b[1-4]\b/);
+        if (numMatch) {
+          foundIndex = parseInt(numMatch[0]) - 1;
+        } else {
+          for (const [lang, services] of Object.entries(SERVICE_MAP)) {
+            for (let i = 0; i < services.length; i++) {
+              if (t.includes(services[i].toLowerCase())) {
+                foundIndex = i;
+                break;
+              }
+            }
+            if (foundIndex !== -1) break;
+          }
+        }
+
+        if (foundIndex !== -1) {
+          selectedService = currentServices[foundIndex];
+          let slotsText = langData.slots + "\n" + langData.slot_list.map((s, i) => `${i + 1}️⃣ ${s}`).join('\n');
+          await botReply(slotsText);
+          currentState = 'SELECT_TIME';
+        } else {
+          await botReply(langData.fallback);
+        }
+      } else if (currentState === 'SELECT_TIME') {
+        let foundTimeIndex = -1;
+        const numMatch = t.match(/\b[1-4]\b/);
+        
+        if (numMatch) {
+          foundTimeIndex = parseInt(numMatch[0]) - 1;
+        } else if (t.includes('today') || t.includes('сегодня') || t.includes('сьогодні') || t.includes('oggi') || t.includes('hoy') || t.includes('heute') || t.includes('aujourd')) {
+          foundTimeIndex = 0;
+        } else if (t.includes('tomorrow') || t.includes('завтра') || t.includes('domani') || t.includes('mañana') || t.includes('morgen') || t.includes('demain')) {
+          foundTimeIndex = 2;
+        }
+
+        if (foundTimeIndex === -1) foundTimeIndex = 0;
+
+        const selectedTime = langData.slot_list[foundTimeIndex];
+        await botReply(langData.confirm.replace('{service}', selectedService).replace('{time}', selectedTime));
+        await botReply(langData.remind);
+        currentState = 'DONE';
+      }
+    }
+
+    sendBtn.onclick = () => handleUserInput(inp.value);
+    inp.onkeydown = (e) => { if (e.key === 'Enter') handleUserInput(inp.value); };
+
+    window.onload = () => {
+      setChips('en');
+      setTimeout(() => {
+        botReply(LANGUAGES.en.greet);
+      }, 800);
+    };
+  </script>
+
+</body>
+</html>
