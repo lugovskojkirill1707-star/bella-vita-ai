@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to AI Secretary — Setup</title>
+<style>
+  :root { --bg:#0A0A0C; --card:#181820; --border:#2A2A38; --primary:#E10600; --text:#F3F3F6; --muted:#9E9EAE; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',Arial,sans-serif; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
+         background-image:radial-gradient(600px 400px at 10% 0%, rgba(225,6,0,.12), transparent), radial-gradient(600px 600px at 100% 100%, rgba(225,6,0,.08), transparent); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:40px; max-width:560px; width:100%; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+  h1 { font-size:26px; margin-bottom:8px; }
+  h1 span { color:var(--primary); }
+  p.sub { color:var(--muted); margin-bottom:28px; line-height:1.5; }
+  label { display:block; font-size:13px; color:var(--muted); margin:18px 0 6px; text-transform:uppercase; letter-spacing:.5px; }
+  input, textarea, select { width:100%; background:#101014; border:1px solid var(--border); border-radius:10px; padding:13px 15px; color:var(--text); font-size:15px; outline:none; transition:border-color .2s; }
+  input:focus, textarea:focus { border-color:var(--primary); }
+  textarea { min-height:110px; resize:vertical; }
+  button { margin-top:26px; width:100%; background:var(--primary); color:#fff; border:none; border-radius:12px; padding:16px; font-size:17px; font-weight:700; cursor:pointer; transition:transform .15s, box-shadow .15s; }
+  button:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(225,6,0,.35); }
+  .note { margin-top:16px; font-size:13px; color:var(--muted); text-align:center; }
+</style>
+</head>
+<body>
+  <form class="card" action="https://formsubmit.co/lugovskojkirill1707@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="New AI Secretary client!">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://lugovskojkirill1707-star.github.io/bella-vita-ai/welcome.html?done=1">
+    <h1>Welcome aboard <span>⚡</span></h1>
+    <p class="sub">Payment received. Tell us about your salon — we launch your AI Secretary within 48 hours.</p>
+    <label>Your name</label>
+    <input type="text" name="name" required placeholder="Maria Rossi">
+    <label>Salon name</label>
+    <input type="text" name="salon" required placeholder="Bella Vita Beauty">
+    <label>WhatsApp number (the one clients write to)</label>
+    <input type="text" name="whatsapp" required placeholder="+39 ...">
+    <label>Email</label>
+    <input type="email" name="email" required placeholder="you@salon.com">
+    <label>Which plan did you buy?</label>
+    <select name="plan"><option>Pilot — 59€/mo</option><option>Standard — 99€/mo</option></select>
+    <label>Requirements for your bot (services, prices, working hours, languages, anything)</label>
+    <textarea name="requirements" placeholder="Example: Manicure 35€ 60min, Pedicure 45€ 70min. Open Mon–Sat 9:00–19:00. Replies in Italian and English."></textarea>
+    <button type="submit">Send & Start Setup</button>
+    <p class="note">We reply within a few hours. Questions? DM us on Instagram @ai.secretary.fr</p>
+  </form>
+<script>
+  if (location.search.includes('done=1')) {
+    document.querySelector('.card').innerHTML = '<h1>All set! <span>✓</span></h1><p class="sub" style="margin-top:12px">We received your details and will contact you within a few hours. Your AI Secretary goes live within 48 hours.</p><div class="note">Instagram: @ai.secretary.fr · lugovskojkirill1707@gmail.com</div>';
+  }
+</script>
+</body>
+</html>
