@@ -99,6 +99,16 @@
       opacity: 0.15;
     }
 
+
+    /* polish: smooth everything */
+    html { scroll-behavior: smooth; }
+    .btn, .price-card, .contact-item, .feature-card, .chip { transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s cubic-bezier(.22,1,.36,1), border-color .3s, background .3s, color .3s; will-change: transform; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 34px rgba(225,6,0,.35); }
+    .price-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(225,6,0,.18); border-color: rgba(225,6,0,.45); }
+    .contact-item:hover, .feature-card:hover { transform: translateY(-4px); }
+    @keyframes logoPulse { 0%,100% { box-shadow: 0 0 14px rgba(225,6,0,.55); } 50% { box-shadow: 0 0 26px rgba(225,6,0,.9); } }
+    .logo img { animation: logoPulse 4s infinite ease-in-out; }
+
     @keyframes floatOrb {
       0% { transform: translate(0px, 0px) scale(1); }
       50% { transform: translate(50px, 80px) scale(1.1); }
@@ -924,10 +934,7 @@
   <div class="container">
     <header>
       <a href="#" class="logo">
-        <svg width="34" height="34" viewBox="0 0 100 100" fill="none">
-          <path d="M50 8C26 8 12 24 12 44c0 14 8 26 20 31l-4 13 16-9c2 .2 4 .3 6 .3 24 0 38-16 38-36S74 8 50 8z" fill="#E10600" opacity=".9"/>
-          <path d="M50 30l5.2 12.6L68 44l-10 8.6L60.8 66 50 58.8 39.2 66 42 52.6 32 44l12.8-1.4z" fill="white"/>
-        </svg>
+        <img src="data:image/jpeg;base64,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" alt="AI Secretary" style="width:42px;height:42px;border-radius:50%;object-fit:cover;box-shadow:0 0 14px rgba(225,6,0,.55);">
         AI Secretary <span>FR</span>
       </a>
       <a href="#demo" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px;">Try Live Demo</a>
